@@ -18,7 +18,7 @@ namespace Datingapp.api.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "Created",
+                name: "CreatedAt",
                 table: "Users",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
@@ -103,7 +103,7 @@ namespace Datingapp.api.Migrations
                 table: "Users");
 
             migrationBuilder.DropColumn(
-                name: "Created",
+                name: "CreatedAt",
                 table: "Users");
 
             migrationBuilder.DropColumn(
