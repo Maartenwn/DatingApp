@@ -1,5 +1,5 @@
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,8 +10,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
-
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -36,8 +35,15 @@ export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
+@Pipe({
+  name: 'timeAgo',
+  pure: false
+})
+export class TimeAgoExtendsPipe extends TimeAgoPipe {}
+
 @NgModule({
   declarations: [
+    TimeAgoExtendsPipe,
     AppComponent,
     NavComponent,
     HomeComponent,
@@ -48,7 +54,7 @@ export function tokenGetter() {
     ListsComponent,
     MessagesComponent,
     MemberEditComponent,
-    PhotoEditorComponent,
+    PhotoEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -71,13 +77,13 @@ export function tokenGetter() {
     TabsModule.forRoot()
   ],
   providers: [
-     AuthService,
-     ErrorInterceptorProvider,
-     MemberDetailResolver,
-     MemberListResolver,
-     MemberEditResolver,
-     PreventUnsavedChanges
-   ],
+    AuthService,
+    ErrorInterceptorProvider,
+    MemberDetailResolver,
+    MemberListResolver,
+    MemberEditResolver,
+    PreventUnsavedChanges
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

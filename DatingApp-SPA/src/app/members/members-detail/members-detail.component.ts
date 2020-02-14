@@ -17,6 +17,8 @@ export class MembersDetailComponent implements OnInit {
 
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) {}
 
+  lastActive: string;
+
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.user = data.user;
@@ -33,6 +35,9 @@ export class MembersDetailComponent implements OnInit {
       }
     ];
     this.galleryImages = this.getImages();
+
+    var date = this.user.lastActive;
+    this.lastActive = date.toString();
   }
 
   getImages() {
