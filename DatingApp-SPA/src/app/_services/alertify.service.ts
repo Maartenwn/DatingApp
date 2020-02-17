@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as alertify from 'alertifyjs';
+import { error } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
